@@ -1,0 +1,17 @@
+{
+  "name": "herbal-content-sandbox",
+  "version": "0.0.1",
+  "private": true,
+  "type": "module",
+  "packageManager": "pnpm@9.12.0",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "content:check": "node scripts/check-content.mjs",
+    "test": "pnpm content:check",
+    "typecheck": "node --check scripts/build.mjs && node --check scripts/check-content.mjs",
+    "lint": "echo 'lint placeholder (ok)'"
+  }
+}
