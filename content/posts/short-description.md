@@ -1,6 +1,6 @@
 ---
 title: Internal links for small sites
-description: Internal links matter.
+description: Practical guidance for using internal links to help visitors and search engines understand a small site's most important pages.
 slug: internal-links
 updatedAt: 2026-05-12
 ---
