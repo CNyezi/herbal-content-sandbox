@@ -73,10 +73,7 @@ function reportJson(ok, failures) {
       name: 'content-check',
       assertionResults: ok
         ? [{ fullName: 'content metadata checks', status: 'passed' }]
-        : failures.map(problem => ({
-            fullName: `content metadata checks > ${problem}`,
-            status: 'failed'
-          }))
+        : [{ fullName: 'content metadata checks', status: 'failed', failureMessages: failures }]
     }]
   };
 }
