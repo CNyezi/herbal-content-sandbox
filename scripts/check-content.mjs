@@ -26,8 +26,16 @@ for (const [slug, owners] of slugs.entries()) {
 }
 
 if (problems.length > 0) {
+  if (process.argv.includes('--reporter=json')) {
+    console.log(JSON.stringify(reportJson(false, problems)));
+    process.exit(1);
+  }
   for (const problem of problems) console.error(problem);
   process.exit(1);
+}
+
+if (process.argv.includes('--reporter=json')) {
+  console.log(JSON.stringify(reportJson(true, [])));
 }
 
 function required(value, rel, field) {
@@ -57,4 +65,18 @@ function parseFrontmatter(raw) {
     record[match[1]] = match[2].replace(/^['"]|['"]$/g, '').trim();
   }
   return record;
+}
+
+function reportJson(ok, failures) {
+  return {
+    testResults: [{
+      name: 'content-check',
+      assertionResults: ok
+        ? [{ fullName: 'content metadata checks', status: 'passed' }]
+        : failures.map(problem => ({
+            fullName: `content metadata checks > ${problem}`,
+            status: 'failed'
+          }))
+    }]
+  };
 }
